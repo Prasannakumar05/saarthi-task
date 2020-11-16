@@ -191,22 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// searchElement(value) {
-//     this.state.allSubjects = [];
-//     if (value) {
-//       for (var i = 0; i < this.state.tempAllSubjects.length; i++) {
-//         if (
-//           this.state.tempAllSubjects[i].name
-//             .toLowerCase()
-//             .indexOf(value.toLowerCase()) >= 0
-//         ) {
-//           this.state.allSubjects.push(this.state.tempAllSubjects[i]);
-//           this.setState({});
-//         }
-//       }
-//     } else {
-//       this.state.allSubjects = this.state.tempAllSubjects;
-//       this.setState({});
-//     }
-//     this.setState({});
-//   }
+

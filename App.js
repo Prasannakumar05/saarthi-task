@@ -17,63 +17,61 @@ export default function App() {
       .then(response => response.json())
       .then((responseJson) => {
       setDataSource(responseJson.results)
+      setMasterDataSource(responseJson.results)
       })
       .catch(err => console.log(err))
     
     
   }, [])
   
-  //  const searchFilterFunction = (text) => {
+   const searchFilterFunction = (text) => {
     
-  //   if (text) {
+    if (text) {
      
-  //     const newData = masterDataSource.filter(
-  //       function (item) {
-  //         const itemData = item.title
-  //           ? item.title.toUpperCase()
-  //           : ''.toUpperCase();
-  //         const textData = text.toUpperCase();
-  //         return itemData.indexOf(textData) > -1;
-  //     });
-  //     setDataSource(newData);
-  //     setSearch(text);
-  //   } else {
-  //     // Inserted text is blank
-  //     // Update FilteredDataSource with masterDataSource
-  //     setDataSource(masterDataSource);
-  //     setSearch(text);
-  //   }
-  //  };
-  //  const ItemView = ({item}) => {
-  //   return (
-  //     // Flat List Item
-  //     <Text
-  //       style={styles.itemStyle}
-  //       onPress={() => getItem(item)}>
-  //       {item.id}
-  //       {'.'}
-  //       {item.title.toUpperCase()}
-  //     </Text>
-  //   );
-  // };
+      const newData = masterDataSource.filter(
+        function (item) {
+          const itemData = item.name
+            ? item.name.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+      });
+      setDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setDataSource(masterDataSource);
+      setSearch(text);
+    }
+   };
+   const ItemView = ({item}) => {
+    return (
+      // Flat List Item
+      <Text
+        style={styles.itemStyle}
+        onPress={() => getItem(item)}>
+        {item.id}
+        {'.'}
+        {item.title.toUpperCase()}
+      </Text>
+    );
+  };
 
-  // const ItemSeparatorView = () => {
-  //   return (
-  //     // Flat List Item Separator
-  //     <View
-  //       style={{
-  //         height: 0.5,
-  //         width: '100%',
-  //         backgroundColor: '#fff',
-  //       }}
-  //     />
-  //   );
-  // };
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#fff',
+        }}
+      />
+    );
+  };
 
-  // const getItem = (item) => {
-  //   // Function for click on an item
-  //   alert('Id : ' + item.id + ' Title : ' + item.title);
-  // };
+ 
   
   
   return (
@@ -85,7 +83,8 @@ export default function App() {
           <TextInput
             style={{ marginLeft: 20 }}
             placeholder={"Search for restaurants"}
-            // onChangeText={(text) => searchFilterFunction(text)}      
+              onChangeText={(text) => searchFilterFunction(text)} 
+            value={search}  
           />
         </View>
       </View>
@@ -113,7 +112,8 @@ export default function App() {
               </View>
         </View>
         )
-      }} keyExtractor={item=> item.name} />
+        }} keyExtractor={item => item.name}
+       ItemSeparatorComponent={ItemSeparatorView}  />
         
       </View>
       
